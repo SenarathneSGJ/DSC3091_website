@@ -1,0 +1,18 @@
+---
+title: ""
+format: html
+page-layout: full
+toc: false
+anchor-sections: false
+editor: source
+---
+
+## Laboratory Sessions
+
+This course is a `300 level`, `2 credits`, `practical course`.
+
+The lab classes are conducted on every Wednesday from `3.00 pm to 5.00 pm` in the `Data Science lab` of Department of Statistics & Computer Science.
+
+All the concepts are demonstrated using `R software`.
+
+Please refer the extra course materials posted in the Google Classroom of this course.

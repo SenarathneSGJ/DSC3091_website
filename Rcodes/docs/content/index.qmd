@@ -1,0 +1,30 @@
+---
+title: ""
+format: html
+page-layout: full
+toc: true
+css: index.css
+anchor-sections: false
+editor: source
+---
+
+## Course Content
+
+Declaring advanced functions, complex data manipulation, pattern matching, writing efficient programs, point estimation, confidence interval and hypothesis testing, using a statistical software with quality control tools for statistical process control, generating quality control charts, multiple linear regression, model diagnostics, generate reports for statistical analysis.
+
+All the concepts are demonstrated using `R software`.
+
+**Pre-requisites**: DSC3013
+
+## Recommended Texts
+
+-   Lander, J.P. (2017). R for Everyone: Advanced Analytics and Graphics. 2nd Ed. Addison-Wesley Data & Analytics Series.
+
+-   de Micheaux, P.L., Drouilhet, R. and Liquet, B. (2014). The R Software: Fundamentals of Programming and Statistical Analysis. 2013 Ed., Springer.
+
+-   Matloff, N. (2011). The Art of R Programming: A Tour of Statistical Software Design, 1st Ed. No Starch Press.
+
+## Course Evaluation
+
+-   Continuous Assesments (Mid Exam/Assignments): 40%
+-   End Semester Examination: 60%

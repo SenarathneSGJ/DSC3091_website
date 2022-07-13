@@ -1,0 +1,228 @@
+---
+title: DSC 3091- Advanced Statistics Applications I
+subtitle: "Point Estimation and Confidence Intervals"
+author: Dr Jagath Senarathne
+institute: Department of Statistics and Computer Science 
+format: 
+  revealjs:
+      theme: [serif, custom.scss]
+      slide-number: true
+      chalkboard: 
+        theme: whiteboard
+      
+editor: visual
+---
+
+## Point Estimation
+
+**Recall**
+
+-   *Parameter*: Characteristics that are used to describe the population.
+
+-   *Statistic*: a function of the observable random variables in a sample which does not include any unknown quantities.
+
+-   *Estimator*: A statistic that is used to estimate an unknown parameter.
+
+## Point Estimation Cont...
+
+\n
+
+| **Parameter**                  | **Estimator**               |
+|:-------------------------------|:----------------------------|
+| Population mean $\mu$          | Sample mean $\bar{x}$       |
+| Population variance $\sigma^2$ | Sample variance $s^2$       |
+| Population proportion $p$      | Sample proportion $\hat{p}$ |
+|                                |                             |
+
+## Maximum Likelihood Estimators
+
+-   The point in the parameter space that maximizes the likelihood function.
+
+-   Likelihood function is given by; $$𝐿(𝑥,\theta)=\prod_{𝑖=1}^𝑛𝑓(𝑥_i,\theta)$$
+
+-   The idea of maximum likelihood estimation is to first assume our data come from a known family of distributions that contain parameters.
+
+-   Then the maximum likelihood estimates (MLEs) of the parameters will be the parameter values that are most likely to have generated our data.
+
+## Example 1
+
+-   Consider a simple coin-flipping example. Let's say we flipped a coin 200 times and observed 103 heads and 97 tails. If the probability of "success" (i.e. getting a head) is $p$,
+    1.  Define a function that will calculate the likelihood function for a given value of $p$; then
+
+    2.  Search for the value of $p$ that results in the highest likelihood.
+
+## Example 2
+
+Suppose we have data points representing the weight (in kg) of students in a class.
+
+```{r}
+set.seed(2022)
+Weight=round(rnorm(50,50,10),3)
+print(Weight)
+```
+
+This dataset appears to follow a normal distribution. Find the MLEs for the mean and standard deviation for this distribution?
+
+------------------------------------------------------------------------
+
+#### Normal distribution - Maximum Likelihood Estimation
+
+-   The MLE of $\mu$ is defined as $\hat{\mu}_{MLE}=argmax(x_1,...,x_n|\mu,\sigma^2)$; where $\hat{\mu}_{MLE}$ is the value of $\mu$ that maximizes the likelihood function.
+
+![](images/paste-CAB44AE1.png){fig-align="center" width="4471"}
+
+-   If we maximise the above likelihood function, we get $\hat{\mu}_{MLE}=\bar{x}.$
+
+-   Since the MLE of $\mu$ is the sample mean, computing the MLE in R becomes straightforward.
+
+## Interval Estimation
+
+-   Point estimators are often use as sample measures for population parameters.
+
+-   It is also helpful to know how reliable this estimate is, that is, how much sampling uncertainty is associated with it.
+
+-   A useful way to express this uncertainty is to calculate an interval estimate or confidence interval for the population parameter
+
+-   In other words, the confidence interval is of the form "**point estimate ± uncertainty**"
+
+## 
+
+### Confidence Interval for Mean
+
+**Case 1**: When data is normal/ large sample and $\sigma$ is known.
+
+$$\bar{x}\pm z_{\alpha/2}\sigma/\sqrt{n}$$
+
+![](images/paste-828890DC.png)
+
+------------------------------------------------------------------------
+
+**Case 2**: When data is normal/ large samples and $\sigma$ is unknown.
+
+$$\bar{x}\pm t_{n-1,\alpha/2}\sigma/\sqrt{n}$$
+
+![](images/paste-1B9E4230.png)
+
+------------------------------------------------------------------------
+
+**Case 3**: When data is non-normal/ small samples
+
+-   For this, bootstrap approach is used as follows.
+
+![](images/paste-E97242D1.png)
+
+------------------------------------------------------------------------
+
+### CONFIDENCE INTERVALS FOR Difference of Means
+
+**Case 1:** Sampling from two independent normal distributions with known variances.
+
+![](images/paste-EAF7E47A.png)
+
+![](images/paste-2363134F.png)
+
+    library("BSDA")
+    z.test(x,y = NULL,alternative = "two.sided",
+    sigma.x = NULL, sigma.y = NULL, conf.level = 0.95)
+
+------------------------------------------------------------------------
+
+**Case 2:** Sampling from two independent normal distributions with unknown variances (small samples).
+
+-   when population variances are equal
+
+![](images/paste-20EC42F5.png)
+
+        t.test(x,y,alternative = "two.sided",
+        var.equal=TRUE, conf.level = 0.95)
+
+------------------------------------------------------------------------
+
+-   when population variances are unequal
+
+![](images/paste-AD18975E.png)
+
+![](images/paste-D5AF962F.png)
+
+      t.test(x,y,alternative = "two.sided",
+        var.equal=FALSE, conf.level = 0.95)
+
+------------------------------------------------------------------------
+
+### Confidence Interval Chart in R (Independent Means & CIs)
+
+![](https://www.researchgate.net/profile/Sarah-Vanhoutte/publication/294318520/figure/fig16/AS:614068499009558@1523416747796/Graph-depicting-the-95-confidence-interval-of-the-CNV-slope-for-all-electrodes-of.png)
+
+------------------------------------------------------------------------
+
+-   Example
+
+```{r}
+#| echo: true
+set.seed(123456)                 # Create example data
+data <- data.frame(x = c("A","B","C"),
+                  y = round(runif(3, 10, 20),2),
+                  lower = round(runif(3, 0, 10),2),
+                  upper = round(runif(3, 20, 30),2))
+
+library(ggplot2)
+ggplot(data, aes(x, y)) +        # ggplot2 plot with confidence intervals
+  geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper))
+```
+
+------------------------------------------------------------------------
+
+### Confidence Intervals for Proportion
+
+-   **Case 1**: For large sample (Using Normal approximation)
+
+$$ \hat{p}\pm Z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+![](images/paste-7C863FC6.png)
+
+------------------------------------------------------------------------
+
+**Case 1**: For large sample (Using Binomial Distribution)
+
+-   we can use the following functions from R package *epitools* for this case.
+
+![](images/paste-A89B3710.png)
+
+------------------------------------------------------------------------
+
+**Case 2**: For small sample (Using Binomial Distribution)
+
+-   When sample size is small, confidence interval for population can be calculated using binom.test() function.
+
+![](images/paste-74B0E647.png)
+
+------------------------------------------------------------------------
+
+### Confidence Intervals for Variance
+
+**Case 1**: Under normality assumption
+
+-   User defined function to obtain confidence interval for variance.
+
+<!-- -->
+
+     var.interval = function(data, conf.level = 0.95) {
+     df = length(data) - 1
+     chilower = qchisq((1 - conf.level)/2, df)
+     chiupper = qchisq((1 - conf.level)/2, df, lower.tail = FALSE)
+     v = var(data)
+     c(df * v/chiupper, df * v/chilower)
+     }
+     
+     lizard = c(6.2, 6.6, 7.1, 7.4, 7.6, 7.9, 8, 8.3, 8.4, 8.5, 8.6, 8.8, 8.8, 9.1, 9.2, 9.4, 9.4, 9.7, 9.9, 10.2, 10.4, 10.8, 11.3, 11.9)
+
+     var.interval(lizard)
+
+------------------------------------------------------------------------
+
+**Case 2**: Under non-normality assumption
+
+-   When no assumption is made about data, a bootstrap method is used to obtain confidence intervals for the population variance.
+
+![](images/paste-41E6DA37.png)

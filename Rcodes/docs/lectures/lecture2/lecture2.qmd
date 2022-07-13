@@ -1,0 +1,100 @@
+---
+title: "Learn Quarto"
+author: "Pushpakanthie Wijekoon"
+affiliation: "Department of Statistics & Computer Science, University of"
+   
+format:  
+  html: 
+   code-fold: true
+   toc: true
+   theme: beige
+toc-location: left
+title-block-banner: true
+number-sections: true
+editor: visual
+---
+
+## Bivariate graphs
+
+Bivariate graphs display the relationship between two variables. The type of graph will depend on the measurement level of the variables (categorical or quantitative).
+
+### Categorical vs. Categorical graphs
+
+When plotting the relationship between two categorical variables, stacked, grouped, or segmented bar charts are typically used. A less common approach is the mosaic chart.
+
+**Example**
+
+The mpg dataset from the ggplot2 package, contains fuel economy data for 38 popular models of car, for the years 1999 and 2008. Plot the relationship between automobile class and drive type (front-wheel, rear-wheel, or 4-wheel drive) for the automobiles.
+
+#### Access data
+
+```{r}
+#| label: load-data
+#| message: false
+#| warning: false
+library(ggplot2)
+data(mpg, package="ggplot2")
+library(dplyr)
+head(mpg)
+glimpse(mpg)
+summary(mpg)
+```
+
+Now, we plot the relationship between `automobile class` and `drive type` (front-wheel, rear-wheel, or 4-wheel drive) for the automobiles using stacked, or segmented bar charts.
+
+#### Stacked bar chart
+
+```{r}
+#| label: fig-stackbar
+#| fig-cap: Stacked Bar Chart of Automobiles
+library(ggplot2)
+ggplot(mpg, 
+       aes(x = class, 
+           fill = drv)) + 
+  geom_bar(position = "stack")+
+  scale_fill_discrete(labels = c("4-wheel", "front-wheel", "rear-wheel"))
+```
+
+According to the @fig-stackbar, the most common vehicle is the SUV. All 2seater cars are rear wheel drive, and most of the SUVs are 4-wheel drive. All minivans are front wheel drive, and all pickups are four wheel.
+
+#### Segmented bar plot
+
+This is also a stacked bar plot where each bar represents 100 percent.
+
+```{r}
+#| label: fig-segmentbar
+#| fig-cap: Segmented Bar Chart of Automobiles
+library(dplyr)
+plotdata <- mpg %>%
+  group_by(class, drv) %>%
+  summarize(n = n()) %>% 
+  mutate(pct = n/sum(n),
+         lbl = scales::percent(pct))
+ggplot(plotdata, 
+       aes(x = factor(class,
+                      levels = c("2seater", "subcompact", 
+                                 "compact", "midsize", 
+                                 "minivan", "suv", "pickup")),
+           y = pct,
+           fill = factor(drv, 
+                         levels = c("f", "r", "4"),
+                         labels = c("front-wheel", 
+                                    "rear-wheel", 
+                                    "4-wheel")))) + 
+geom_bar(stat = "identity",
+           position = "fill") +
+  scale_y_continuous(breaks = seq(0, 1, .2)) +
+  geom_text(aes(label = lbl), 
+            size = 3, 
+            position = position_stack(vjust = 0.5)) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(y = "Percent", 
+       fill = "Drive Train",
+       x = "Class",
+       title = "Automobile Drive by Class") +
+  theme_minimal()
+```
+
+You can easily change the options shown in the above @fig-segmentbar.
+
+## References {.unnumbered}
