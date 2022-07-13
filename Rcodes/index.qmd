@@ -1,0 +1,29 @@
+---
+title: ""
+page-layout: custom
+toc: false
+css: index.css
+editor: source
+---
+
+# DSC 3091 - Advanced Statistical Applications 1
+
+![](images/title.png){fig-align="center"}
+
+## Introduction
+
+Many statistics issues are caused by misunderstanding of statistical concepts due to the poor theoretical background of practitioners and applied statisticians. Further, insufficient knowledge about the latest technology and tools will also limit the capabilities of Statisticians to come up with the best solution for problems within a reasonable time. Advanced Statistics Applications I course teaches students to use statistical theory to solve real-life problems using Statistical tools and software packages. This course will help enhance their technical knowledge through laboratory sessions. The content of this course mainly covers the theoretical concepts such as Point and interval estimation, Hypothesis testing, Statistical quality control, Categorical data analysis and multiple linear regression. It also includes some practical sessions where students learn how to use more recent R packages for complex data manipulation and creating academic documents.
+
+## Expection of the Class
+
+-   Not to become an expert in all statistical software packages but to become an expert data scientist
+
+-   Present an overview of what solutions are available with the emphasis on free open source software
+
+-   Develop the skill set necessary to perform key aspects of data science efficiently.
+
+-   The course covers the application of basic and advanced concepts in the R programming environment to allow a scalable implementation.
+
+## Instructors
+- [Prof. P. Wijekoon](https://sci.pdn.ac.lk/scs/staff/contactPushpa.php), [Department of Statistics & Computer Science](https://sci.pdn.ac.lk/scs/), [University of Peradeniya](https://www.pdn.ac.lk/), Sri Lanka.
+- [Dr. Jagath Senarathne](https://sci.pdn.ac.lk/scs/staff/contactJagath.php), [Department of Statistics & Computer Science](https://sci.pdn.ac.lk/scs/), [University of Peradeniya](https://www.pdn.ac.lk/), Sri Lanka.

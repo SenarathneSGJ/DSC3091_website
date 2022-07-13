@@ -1,0 +1,7 @@
+---
+title: "Open Source License"
+---
+
+This website is protected under open source software licensed under the [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html). Anyone can use the tools used for research and science are free and open. 
+The source code of this website is available at <https://github.com/pkwijekoon/courseweb/>
+

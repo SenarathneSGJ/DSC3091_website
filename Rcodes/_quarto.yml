@@ -1,0 +1,75 @@
+project:
+  type: website
+
+website:
+  title: "DSC3091"
+  image: "quarto.png"
+  favicon: "favicon.png"
+  site-url: https://pushpa-wijekoon.netlify.app
+  repo-url: https://github.com/pkwijekoon/courseweb
+  page-navigation: true
+  page-footer:
+    center: |
+      Department of Statistics and Computer Science  
+      University of Peradeniya  
+      Sri Lanka
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Course Details"
+        href: docs/content/index.qmd
+      - text: "Lecture Notes"
+        href: docs/lectures/index.qmd 
+      - text: "Independent Learning"
+        menu:
+          - text: "Quarto: Video 1"
+            href: "url"
+          - text: "Quarto: Video 2"
+            href: "https://github.com/quarto-dev/quarto-cli/issues"
+          - text: "flipbookr: Lecture 2"
+            href: "https://github.com/pkwijekoon"
+          - text: "Swirl"
+            href: "https://github.com/pkwijekoon"
+    right:
+      - icon: twitter
+        href: https://twitter.com/quarto_pub
+      - icon: github
+        href: https://github.com/pkwijekoon
+  
+  sidebar:
+    - id: content
+      title: "Course Details"
+      style: "floating"
+      collapse-level: 2
+      align: left
+      contents:
+        - docs/content/index.qmd
+        
+    - id: lectures
+      title: "Lecture Notes"
+      style: "floating"
+      collapse-level: 2
+      align: left
+      contents:
+        - docs/lectures/index.qmd
+        - text: "Lecture 1"
+          href: https://senarathnesgj.github.io/DSC3091_lec1/index.html
+        - text: "Lecture 2"
+          href: docs/lectures/lecture2/lecture2.qmd
+        - text: "Lecture 3"
+          href: docs/lectures/lecture3/lecture3.qmd
+        - text: "Lecture 4"
+          href: docs/lectures/lecture4/lecture4.qmd
+format:
+  html:
+    toc: true
+    theme: cosmo
+    code-copy: true
+    code-overflow: wrap
+    css: styles.css
+    
+
+editor: visual
+
