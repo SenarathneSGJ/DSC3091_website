@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "docs/content/index.html",
+    "href": "docs/content/index.html",
+    "title": "DSC3091",
+    "section": "",
+    "text": "Declaring advanced functions, complex data manipulation, pattern matching, writing efficient programs, point estimation, confidence interval and hypothesis testing, using a statistical software with quality control tools for statistical process control, generating quality control charts, multiple linear regression, model diagnostics, generate reports for statistical analysis.\nAll the concepts are demonstrated using R software.\nPre-requisites: DSC3013"
+  },
+  {
+    "objectID": "docs/content/index.html#recommended-texts",
+    "href": "docs/content/index.html#recommended-texts",
+    "title": "DSC3091",
+    "section": "Recommended Texts",
+    "text": "Recommended Texts\n\nLander, J.P. (2017). R for Everyone: Advanced Analytics and Graphics. 2nd Ed. Addison-Wesley Data & Analytics Series.\nde Micheaux, P.L., Drouilhet, R. and Liquet, B. (2014). The R Software: Fundamentals of Programming and Statistical Analysis. 2013 Ed., Springer.\nMatloff, N. (2011). The Art of R Programming: A Tour of Statistical Software Design, 1st Ed. No Starch Press."
+  },
+  {
+    "objectID": "docs/content/index.html#course-evaluation",
+    "href": "docs/content/index.html#course-evaluation",
+    "title": "DSC3091",
+    "section": "Course Evaluation",
+    "text": "Course Evaluation\n\nContinuous Assesments (Mid Exam/Assignments): 40%\nEnd Semester Examination: 60%"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DSC3091",
+    "section": "",
+    "text": "Many statistics issues are caused by misunderstanding of statistical concepts due to the poor theoretical background of practitioners and applied statisticians. Further, insufficient knowledge about the latest technology and tools will also limit the capabilities of Statisticians to come up with the best solution for problems within a reasonable time. Advanced Statistics Applications I course teaches students to use statistical theory to solve real-life problems using Statistical tools and software packages. This course will help enhance their technical knowledge through laboratory sessions. The content of this course mainly covers the theoretical concepts such as Point and interval estimation, Hypothesis testing, Statistical quality control, Categorical data analysis and multiple linear regression. It also includes some practical sessions where students learn how to use more recent R packages for complex data manipulation and creating academic documents.\n\n\n\n\nNot to become an expert in all statistical software packages but to become an expert data scientist\nPresent an overview of what solutions are available with the emphasis on free open source software\nDevelop the skill set necessary to perform key aspects of data science efficiently.\nThe course covers the application of basic and advanced concepts in the R programming environment to allow a scalable implementation.\n\n\n\n\n\nProf. P. Wijekoon, Department of Statistics & Computer Science, University of Peradeniya, Sri Lanka.\nDr. Jagath Senarathne, Department of Statistics & Computer Science, University of Peradeniya, Sri Lanka."
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Open Source License",
+    "section": "",
+    "text": "This website is protected under open source software licensed under the GNU GPL v2. Anyone can use the tools used for research and science are free and open. The source code of this website is available at https://github.com/pkwijekoon/courseweb/"
+  }
+]
