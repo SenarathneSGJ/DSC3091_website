@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="lecture9_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lecture9_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lecture9_files/libs/quarto-html/popper.min.js"></script>
+<script src="lecture9_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lecture9_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lecture9_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet">
+<link href="lecture9_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.505">
+
+  <meta name="author" content="Prof.&nbsp;P. Wijekoon">
+  <title>DSC 3091- Advanced Statistics Applications I</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="lecture9_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lecture9_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="lecture9_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="lecture9_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lecture9_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lecture9_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lecture9_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="lecture9_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="lecture9_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="lecture9_files/libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+  <script src="lecture9_files/libs/viz-1.8.2/viz.js"></script>
+  <link href="lecture9_files/libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+  <script src="lecture9_files/libs/grViz-binding-1.0.6.9000/grViz.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">DSC 3091- Advanced Statistics Applications I</h1>
+  <p class="subtitle">Data Wrangling II</p>
+  <p class="author">Prof.&nbsp;P. Wijekoon</p>
+  <p class="institute">Department of Statistics and Computer Science</p>
+</section>
+
+<section id="data-manipulation-with-dplyr" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<ul>
+<li><p>The package <code>dplyr</code> was written by the most popular R programmer Hadley Wickham who has written many useful R packages.</p></li>
+<li><p>The package contains a set of functions (or “verbs”) that perform common data manipulation operations such as filtering for rows, selecting specific columns, re-ordering rows, adding new columns and summarizing data.</p></li>
+<li><p>Hence, it is called a grammar of data manipulation.</p></li>
+</ul>
+</section>
+
+<section id="data-manipulation-with-dplyr-1" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>The functions (verbs) in the package <code>dplyr</code> are</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th><strong>Equivalent SQL</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/reference/select.html"><code>select()</code></a></td>
+<td>Selecting variables</td>
+<td>SELECT</td>
+</tr>
+<tr class="even">
+<td><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a></td>
+<td>Filter (subset) rows</td>
+<td>WHERE</td>
+</tr>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/reference/"><code>group_by()</code></a></td>
+<td>Group the data</td>
+<td>GROUP BY</td>
+</tr>
+<tr class="even">
+<td><a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>summarise()</code></a></td>
+<td>Summarise data</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a></td>
+<td>Sort the data</td>
+<td>ORDER BY</td>
+</tr>
+<tr class="even">
+<td><a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a></td>
+<td>Create new variables</td>
+<td>COLUMN ALIAS</td>
+</tr>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/reference/"><code>join()</code></a></td>
+<td>Joining data tables</td>
+<td>JOIN</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="data-manipulation-with-dplyr-2" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>To understand these functions, we use the <code>starwars</code> data set in the dplyr package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">as_tibble</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 x 14
+   name        height  mass hair_~1 skin_~2 eye_c~3 birth~4 sex   gender homew~5
+   &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+ 1 Luke Skywa~    172    77 blond   fair    blue       19   male  mascu~ Tatooi~
+ 2 C-3PO          167    75 &lt;NA&gt;    gold    yellow    112   none  mascu~ Tatooi~
+ 3 R2-D2           96    32 &lt;NA&gt;    white,~ red        33   none  mascu~ Naboo  
+ 4 Darth Vader    202   136 none    white   yellow     41.9 male  mascu~ Tatooi~
+ 5 Leia Organa    150    49 brown   light   brown      19   fema~ femin~ Aldera~
+ 6 Owen Lars      178   120 brown,~ light   blue       52   male  mascu~ Tatooi~
+ 7 Beru White~    165    75 brown   light   blue       47   fema~ femin~ Tatooi~
+ 8 R5-D4           97    32 &lt;NA&gt;    white,~ red        NA   none  mascu~ Tatooi~
+ 9 Biggs Dark~    183    84 black   light   brown      24   male  mascu~ Tatooi~
+10 Obi-Wan Ke~    182    77 auburn~ fair    blue-g~    57   male  mascu~ Stewjon
+# ... with 77 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
+#   1: hair_color, 2: skin_color, 3: eye_color, 4: birth_year, 5: homeworld
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-3" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>Now we select the data related to species <code>Droid</code> using <a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a> function as below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Droid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 14
+  name   height  mass hair_color skin_color eye_c~1 birth~2 sex   gender homew~3
+  &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+1 C-3PO     167    75 &lt;NA&gt;       gold       yellow      112 none  mascu~ Tatooi~
+2 R2-D2      96    32 &lt;NA&gt;       white, bl~ red          33 none  mascu~ Naboo  
+3 R5-D4      97    32 &lt;NA&gt;       white, red red          NA none  mascu~ Tatooi~
+4 IG-88     200   140 none       metal      red          15 none  mascu~ &lt;NA&gt;   
+5 R4-P17     96    NA none       silver, r~ red, b~      NA none  femin~ &lt;NA&gt;   
+6 BB8        NA    NA none       none       black        NA none  mascu~ &lt;NA&gt;   
+# ... with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+#   starships &lt;list&gt;, and abbreviated variable names 1: eye_color,
+#   2: birth_year, 3: homeworld
+# i Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-4" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>Now we use <a href="https://dplyr.tidyverse.org/reference/select.html"><code>select()</code></a> function to select some specific variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(name, <span class="fu">ends_with</span>(<span class="st">"color"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 x 4
+   name               hair_color    skin_color  eye_color
+   &lt;chr&gt;              &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+ 1 Luke Skywalker     blond         fair        blue     
+ 2 C-3PO              &lt;NA&gt;          gold        yellow   
+ 3 R2-D2              &lt;NA&gt;          white, blue red      
+ 4 Darth Vader        none          white       yellow   
+ 5 Leia Organa        brown         light       brown    
+ 6 Owen Lars          brown, grey   light       blue     
+ 7 Beru Whitesun lars brown         light       blue     
+ 8 R5-D4              &lt;NA&gt;          white, red  red      
+ 9 Biggs Darklighter  black         light       brown    
+10 Obi-Wan Kenobi     auburn, white fair        blue-gray
+# ... with 77 more rows
+# i Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-5" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>To create a new variable called bmi using the existing variables mass and height, we use <a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a> function, and select some specific variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(name, <span class="at">bmi =</span> mass <span class="sc">/</span> ((height <span class="sc">/</span> <span class="dv">100</span>)  <span class="sc">^</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">select</span>(name<span class="sc">:</span>mass, bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 x 4
+   name               height  mass   bmi
+   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Luke Skywalker        172    77  26.0
+ 2 C-3PO                 167    75  26.9
+ 3 R2-D2                  96    32  34.7
+ 4 Darth Vader           202   136  33.3
+ 5 Leia Organa           150    49  21.8
+ 6 Owen Lars             178   120  37.9
+ 7 Beru Whitesun lars    165    75  27.5
+ 8 R5-D4                  97    32  34.0
+ 9 Biggs Darklighter     183    84  25.1
+10 Obi-Wan Kenobi        182    77  23.2
+# ... with 77 more rows
+# i Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-6" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>Use <a href="https://dplyr.tidyverse.org/reference/arrange.html"><code>arrange()</code></a> function to arrange the variable <code>mass</code> in ascending order as <code>arrange(mass)</code>, and to arrange in descending order, use <code>arrange(desc(mass))</code> as below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mass))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 x 14
+   name        height  mass hair_~1 skin_~2 eye_c~3 birth~4 sex   gender homew~5
+   &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+ 1 Jabba Desi~    175  1358 &lt;NA&gt;    green-~ orange    600   herm~ mascu~ Nal Hu~
+ 2 Grievous       216   159 none    brown,~ green,~    NA   male  mascu~ Kalee  
+ 3 IG-88          200   140 none    metal   red        15   none  mascu~ &lt;NA&gt;   
+ 4 Darth Vader    202   136 none    white   yellow     41.9 male  mascu~ Tatooi~
+ 5 Tarfful        234   136 brown   brown   blue       NA   male  mascu~ Kashyy~
+ 6 Owen Lars      178   120 brown,~ light   blue       52   male  mascu~ Tatooi~
+ 7 Bossk          190   113 none    green   red        53   male  mascu~ Trando~
+ 8 Chewbacca      228   112 brown   unknown blue      200   male  mascu~ Kashyy~
+ 9 Jek Tono P~    180   110 brown   fair    blue       NA   male  mascu~ Bestin~
+10 Dexter Jet~    198   102 none    brown   yellow     NA   male  mascu~ Ojom   
+# ... with 77 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
+#   1: hair_color, 2: skin_color, 3: eye_color, 4: birth_year, 5: homeworld
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-7" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>Now, we use <a href="https://dplyr.tidyverse.org/reference/summarise"><code>summarise()</code></a> function to get some summaries of data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 38 x 3
+   species       n mean_mass
+   &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt;
+ 1 Aleena        1      15  
+ 2 Besalisk      1     102  
+ 3 Cerean        1      82  
+ 4 Chagrian      1     NaN  
+ 5 Clawdite      1      55  
+ 6 Droid         6      69.8
+ 7 Dug           1      40  
+ 8 Ewok          1      20  
+ 9 Geonosian     1      80  
+10 Gungan        3      74  
+# ... with 28 more rows
+# i Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+
+<section id="data-manipulation-with-dplyr-8" class="title-slide slide level1 center">
+<h1><strong>Data manipulation with <code>dplyr</code></strong></h1>
+<p>Now, we filter the observations from the summarise data with n &gt; 1 and mean_mass &gt; 50.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">filter</span>(</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    n <span class="sc">&gt;</span> <span class="dv">1</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    mean_mass <span class="sc">&gt;</span> <span class="dv">50</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 x 3
+  species      n mean_mass
+  &lt;chr&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Droid        6      69.8
+2 Gungan       3      74  
+3 Human       35      82.8
+4 Kaminoan     2      88  
+5 Mirialan     2      53.1
+6 Twi'lek      2      55  
+7 Wookiee      2     124  
+8 Zabrak       2      80  </code></pre>
+</div>
+</div>
+</section>
+
+<section>
+<section id="class-works" class="title-slide slide level1 center">
+<h1>Class works</h1>
+<p>The sampledata.csv contains income generated by states in USA from year 2002 to 2015. Download the data set by clicking on this link - <a href="https://raw.githubusercontent.com/deepanshu88/data/master/sampledata.csv"><strong>Dataset</strong></a> and then right click and hit Save as option.</p>
+<p>(a) Selects variables from “Index” to “Y2006”.</p>
+<p>(b) Drop variables “Index”, and “State” variables from data.</p>
+<p>(c) Filter rows in which Index is equal to A.</p>
+<p>(d) Filter rows having ‘A’ and ‘C’ in column ‘Index’.</p>
+<p>(e) Filter rows ‘A’ and ‘C’ from ‘Index’ <strong>and</strong> income greater than 1.2 million in Year 2006.</p>
+</section>
+<section class="slide level2">
+
+<p>(f) Filter rows ‘A’ and ‘C’ from ‘Index’ <strong>or</strong> income greater than 1.2 million in Year 2006.</p>
+<p>(g) Find the mean and median for the variable Y2012.</p>
+<p>(h) Find mean and median of Y2011 and Y2012.</p>
+<p>(i) Arrange variable Y2011 by variable Index in ascending order.</p>
+<p>(j) Calculate count and mean of variables Y2011 and Y2012 by variable Index.</p>
+<p>(k) Calculate the variable rate=Y2011/Y2012.</p>
+<p>(l) Calculate the cumulative sum of Y2011 and assign it to total, and select variables index, Y2011 and total.</p>
+</section></section>
+<section>
+<section id="class-works-1" class="title-slide slide level1 center">
+<h1>Class works</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>mydata<span class="ot">=</span><span class="fu">read_csv</span>(<span class="st">"C:/D/Lecture Notes/Multivariate methods/categorical data analysis/lecture9/sampledata.csv"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>mydata<span class="ot">=</span><span class="fu">as.tibble</span>(mydata)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>mydata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 16
+   Index State     Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 A     Alabama  1.30e6 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+ 2 A     Alaska   1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+ 3 A     Arizona  1.74e6 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+ 4 A     Arkansas 1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+ 5 C     Califor~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+ 6 C     Colorado 1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+ 7 C     Connect~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+ 8 D     Delaware 1.33e6 1.27e6 1.71e6 1.40e6 1.44e6 1.30e6 1.76e6 1.55e6 1.37e6
+ 9 D     Distric~ 1.11e6 1.99e6 1.37e6 1.83e6 1.80e6 1.60e6 1.19e6 1.74e6 1.71e6
+10 F     Florida  1.96e6 1.47e6 1.42e6 1.36e6 1.34e6 1.28e6 1.76e6 1.82e6 1.20e6
+# ... with 41 more rows, and 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;,
+#   Y2013 &lt;dbl&gt;, Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(a) Selects variables “Index” to “Y2006”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">select</span> (Index<span class="sc">:</span>Y2006)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 7
+   Index State                  Y2002   Y2003   Y2004   Y2005   Y2006
+   &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 A     Alabama              1296530 1317711 1118631 1492583 1107408
+ 2 A     Alaska               1170302 1960378 1818085 1447852 1861639
+ 3 A     Arizona              1742027 1968140 1377583 1782199 1102568
+ 4 A     Arkansas             1485531 1994927 1119299 1947979 1669191
+ 5 C     California           1685349 1675807 1889570 1480280 1735069
+ 6 C     Colorado             1343824 1878473 1886149 1236697 1871471
+ 7 C     Connecticut          1610512 1232844 1181949 1518933 1841266
+ 8 D     Delaware             1330403 1268673 1706751 1403759 1441351
+ 9 D     District of Columbia 1111437 1993741 1374643 1827949 1803852
+10 F     Florida              1964626 1468852 1419738 1362787 1339608
+# ... with 41 more rows
+# i Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(b) Drop variables “Index”, and “State” variables from data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">select</span> (<span class="sc">-</span>Index, <span class="sc">-</span>State)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 14
+     Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010  Y2011  Y2012
+     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 1296530 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6 1.44e6 1.19e6
+ 2 1170302 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6 1.23e6 1.51e6
+ 3 1742027 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6 1.13e6 1.91e6
+ 4 1485531 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6 1.93e6 1.22e6
+ 5 1685349 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6 1.64e6 1.92e6
+ 6 1343824 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6 1.67e6 1.49e6
+ 7 1610512 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6 1.95e6 1.23e6
+ 8 1330403 1.27e6 1.71e6 1.40e6 1.44e6 1.30e6 1.76e6 1.55e6 1.37e6 1.32e6 1.98e6
+ 9 1111437 1.99e6 1.37e6 1.83e6 1.80e6 1.60e6 1.19e6 1.74e6 1.71e6 1.35e6 1.98e6
+10 1964626 1.47e6 1.42e6 1.36e6 1.34e6 1.28e6 1.76e6 1.82e6 1.20e6 1.50e6 1.13e6
+# ... with 41 more rows, and 3 more variables: Y2013 &lt;dbl&gt;, Y2014 &lt;dbl&gt;,
+#   Y2015 &lt;dbl&gt;
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(c) Filter rows in which Index is equal to A.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="#cb21-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">filter</span>(Index <span class="sc">==</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 16
+  Index State      Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 A     Alabama  1296530 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+2 A     Alaska   1170302 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+3 A     Arizona  1742027 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+4 A     Arkansas 1485531 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+# ... with 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;, Y2013 &lt;dbl&gt;,
+#   Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(d) Filter rows having ‘A’ and ‘C’ in column ‘Index’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">filter</span>(Index <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 x 16
+  Index State      Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 A     Alabama   1.30e6 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+2 A     Alaska    1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+3 A     Arizona   1.74e6 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+4 A     Arkansas  1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+5 C     Californ~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+6 C     Colorado  1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+7 C     Connecti~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+# ... with 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;, Y2013 &lt;dbl&gt;,
+#   Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(e) Filter rows ‘A’ and ‘C’ from ‘Index’ <strong>and</strong> income greater than 1.2 million in Year 2006.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">filter</span>(Index <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>)<span class="sc">&amp;</span> Y2006 <span class="sc">&gt;=</span> <span class="dv">1200000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 x 16
+  Index State      Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 A     Alaska    1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+2 A     Arkansas  1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+3 C     Californ~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+4 C     Colorado  1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+5 C     Connecti~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+# ... with 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;, Y2013 &lt;dbl&gt;,
+#   Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(f) Filter rows ‘A’ and ‘C’ from ‘Index’ <strong>or</strong> income greater than 1.2 million in Year 2006.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">filter</span>(Index <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>)<span class="sc">|</span> Y2006 <span class="sc">&gt;=</span> <span class="dv">1200000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 x 16
+   Index State     Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 A     Alabama  1.30e6 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+ 2 A     Alaska   1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+ 3 A     Arizona  1.74e6 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+ 4 A     Arkansas 1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+ 5 C     Califor~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+ 6 C     Colorado 1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+ 7 C     Connect~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+ 8 D     Delaware 1.33e6 1.27e6 1.71e6 1.40e6 1.44e6 1.30e6 1.76e6 1.55e6 1.37e6
+ 9 D     Distric~ 1.11e6 1.99e6 1.37e6 1.83e6 1.80e6 1.60e6 1.19e6 1.74e6 1.71e6
+10 F     Florida  1.96e6 1.47e6 1.42e6 1.36e6 1.34e6 1.28e6 1.76e6 1.82e6 1.20e6
+# ... with 37 more rows, and 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;,
+#   Y2013 &lt;dbl&gt;, Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(g) Find the mean and median for the variable Y2012.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">summarise</span>(<span class="at">mean2012 =</span> <span class="fu">mean</span>(Y2012), <span class="at">median2012=</span><span class="fu">median</span>(Y2012))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 2
+  mean2012 median2012
+     &lt;dbl&gt;      &lt;dbl&gt;
+1 1591135.    1643855</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(h) Find mean and median of Y2011 and Y2012.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">summarise</span>(<span class="at">mean2011=</span><span class="fu">mean</span>(Y2011), <span class="at">mean2012=</span><span class="fu">mean</span>(Y2012),<span class="at">median2011=</span><span class="fu">median</span>(Y2011), <span class="at">median2012=</span><span class="fu">median</span>(Y2012), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 5
+  mean2011 mean2012 median2011 median2012 na.rm
+     &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;
+1 1574968. 1591135.    1575533    1643855 TRUE </code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(i) Arrange variable Y2011 by variable Index in ascending order.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">arrange</span>(Index, Y2011)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 16
+   Index State     Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 A     Arizona  1.74e6 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+ 2 A     Alaska   1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+ 3 A     Alabama  1.30e6 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+ 4 A     Arkansas 1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+ 5 C     Califor~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+ 6 C     Colorado 1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+ 7 C     Connect~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+ 8 D     Delaware 1.33e6 1.27e6 1.71e6 1.40e6 1.44e6 1.30e6 1.76e6 1.55e6 1.37e6
+ 9 D     Distric~ 1.11e6 1.99e6 1.37e6 1.83e6 1.80e6 1.60e6 1.19e6 1.74e6 1.71e6
+10 F     Florida  1.96e6 1.47e6 1.42e6 1.36e6 1.34e6 1.28e6 1.76e6 1.82e6 1.20e6
+# ... with 41 more rows, and 5 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;,
+#   Y2013 &lt;dbl&gt;, Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># To arrange decending order use desc(Y2011).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(j) Calculate count and mean of variables Y2011 and Y2012 by variable Index.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">group_by</span>(Index) <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),<span class="at">mean2011=</span><span class="fu">mean</span>(Y2011), <span class="at">mean2012=</span><span class="fu">mean</span>(Y2012)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 x 4
+   Index     n mean2011 mean2012
+   &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 A         4 1432642. 1455876 
+ 2 C         3 1750357  1547326 
+ 3 D         2 1336059  1981868.
+ 4 F         1 1497051  1131928 
+ 5 G         1 1851245  1850111 
+ 6 H         1 1902816  1695126 
+ 7 I         4 1690170. 1687056.
+ 8 K         2 1489353  1899772.
+ 9 L         1 1210385  1234234 
+10 M         8 1582714. 1586091.
+11 N         8 1448351. 1470316.
+12 O         3 1882111. 1602463.
+13 P         1 1483292  1290329 
+14 R         1 1781016  1909119 
+15 S         2 1381724  1671744 
+16 T         2 1724080. 1865786.
+17 U         1 1288285  1108281 
+18 V         2 1482143  1488651 
+19 W         4 1711341. 1660192.</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(k) Calculate the variable rate=Y2011/Y2012.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">mutate</span>(<span class="at">rate=</span>Y2011<span class="sc">/</span>Y2012)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 17
+   Index State     Y2002  Y2003  Y2004  Y2005  Y2006  Y2007  Y2008  Y2009  Y2010
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 A     Alabama  1.30e6 1.32e6 1.12e6 1.49e6 1.11e6 1.44e6 1.95e6 1.94e6 1.24e6
+ 2 A     Alaska   1.17e6 1.96e6 1.82e6 1.45e6 1.86e6 1.47e6 1.55e6 1.44e6 1.63e6
+ 3 A     Arizona  1.74e6 1.97e6 1.38e6 1.78e6 1.10e6 1.11e6 1.75e6 1.55e6 1.30e6
+ 4 A     Arkansas 1.49e6 1.99e6 1.12e6 1.95e6 1.67e6 1.80e6 1.19e6 1.63e6 1.67e6
+ 5 C     Califor~ 1.69e6 1.68e6 1.89e6 1.48e6 1.74e6 1.81e6 1.49e6 1.66e6 1.62e6
+ 6 C     Colorado 1.34e6 1.88e6 1.89e6 1.24e6 1.87e6 1.81e6 1.88e6 1.75e6 1.91e6
+ 7 C     Connect~ 1.61e6 1.23e6 1.18e6 1.52e6 1.84e6 1.98e6 1.76e6 1.97e6 1.97e6
+ 8 D     Delaware 1.33e6 1.27e6 1.71e6 1.40e6 1.44e6 1.30e6 1.76e6 1.55e6 1.37e6
+ 9 D     Distric~ 1.11e6 1.99e6 1.37e6 1.83e6 1.80e6 1.60e6 1.19e6 1.74e6 1.71e6
+10 F     Florida  1.96e6 1.47e6 1.42e6 1.36e6 1.34e6 1.28e6 1.76e6 1.82e6 1.20e6
+# ... with 41 more rows, and 6 more variables: Y2011 &lt;dbl&gt;, Y2012 &lt;dbl&gt;,
+#   Y2013 &lt;dbl&gt;, Y2014 &lt;dbl&gt;, Y2015 &lt;dbl&gt;, rate &lt;dbl&gt;
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>(l) Calculate the cumulative sum of Y2011 and assign it to total, and select variables index, Y2011 and total.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb40-2"><a href="#cb40-2"></a>mydata <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">cumsum</span>(Y2011))<span class="sc">%&gt;%</span> </span>
+<span id="cb40-4"><a href="#cb40-4"></a>  <span class="fu">select</span>(Index,Y2011, total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 x 3
+   Index   Y2011    total
+   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 A     1440756  1440756
+ 2 A     1230866  2671622
+ 3 A     1130709  3802331
+ 4 A     1928238  5730569
+ 5 C     1639670  7370239
+ 6 C     1665877  9036116
+ 7 C     1945524 10981640
+ 8 D     1318669 12300309
+ 9 D     1353449 13653758
+10 F     1497051 15150809
+# ... with 41 more rows
+# i Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section></section>
+<section id="relational-data" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<p>Suppose we have created data tables which are related to each other. These type of data tables are called relational data. When working with relational data we may want to combine information from different data tables. That can be done in different ways using <code>dplyr</code> package.</p>
+<p>This concept is similar to the <em>relational</em> database management system (or <code>RDBMS</code>) using <code>SQL</code>. Using R, we can do this by using <code>dplyr</code> package, which is somewhat easier to use than <code>SQL</code>, since <code>dplyr</code> is specialised to do data analysis.</p>
+</section>
+
+<section id="relational-data-1" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>We have already worked with <code>flights</code> data table in <code>nycflights13</code> package. In the same package, there are 4 other tibbles (airlines, airports, planes, weather) which are related with <code>flights</code> data table.</p>
+</div><div class="column" style="width:60%;">
+<p><img data-src="rela.png"></p>
+</div>
+</div>
+</section>
+
+<section id="relational-data-2" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<ul>
+<li><p><code>flights</code> connects to <code>planes</code> via <code>tailnum</code> variable.</p></li>
+<li><p><code>flights</code> connects to <code>airlines</code> via <code>carrier</code> variable.</p></li>
+<li><p><code>flights</code> connects to <code>airports</code> via the <code>origin</code> and <code>dest</code> variables.</p></li>
+<li><p><code>flights</code> connects to <code>weather</code> via <code>origin</code>, <code>year</code>, <code>month</code>, <code>day</code> and <code>hour</code> variables.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># Check variables in each tibble</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb42-3"><a href="#cb42-3"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb42-4"><a href="#cb42-4"></a>flights</span>
+<span id="cb42-5"><a href="#cb42-5"></a>airlines</span>
+<span id="cb42-6"><a href="#cb42-6"></a>airports</span>
+<span id="cb42-7"><a href="#cb42-7"></a>planes</span>
+<span id="cb42-8"><a href="#cb42-8"></a>weather</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="relational-data-3" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<p>To connect each pair of tables we use unique identifiers called <strong>keys</strong>.</p>
+<ul>
+<li><p><strong>primary key</strong> - uniquely identifies an observation in its own table.</p></li>
+<li><p><strong>foreign key</strong> - uniquely identifies an observation in another table.</p></li>
+<li><p>A variable can be both a primary key <em>and</em> a foreign key.</p></li>
+<li><p>A primary key and the corresponding foreign key in another table form a <strong>relation</strong></p></li>
+<li><p>Relations are typically one-to-many.</p></li>
+</ul>
+</section>
+
+<section>
+<section id="relational-data-4" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<p>Use <a href="https://cynkra.github.io/dm/articles/tech-dm-draw.html"><code>dm</code> package</a> to get some details about the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">library</span>(dm)</span>
+<span id="cb43-2"><a href="#cb43-2"></a>dm <span class="ot">&lt;-</span> <span class="fu">dm_nycflights13</span>(<span class="at">cycle =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-3"><a href="#cb43-3"></a>dm <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">dm_draw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-fe95942a91c900013ba7" style="width:960px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fe95942a91c900013ba7">{"x":{"diagram":"#data_model\ndigraph {\ngraph [rankdir=LR tooltip=\"Data Model\" ]\n\nnode [margin=0 fontcolor = \"#444444\" ]\n\nedge [color = \"#555555\", arrowsize = 1, ]\n\npack=true\npackmode= \"node\"\n\n  \"airlines\" [id = \"airlines\", label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#9E5320AA\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#ED7D31FF\" BORDER=\"0\"><FONT COLOR=\"#FFFFFF\">airlines<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FBE5D5FF\" PORT=\"carrier\"><U>carrier<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"airports\" [id = \"airports\", label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#9E5320AA\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#ED7D31FF\" BORDER=\"0\"><FONT COLOR=\"#FFFFFF\">airports<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FBE5D5FF\" PORT=\"faa\"><U>faa<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"flights\" [id = \"flights\", label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#3C678EAA\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#5B9BD5FF\" BORDER=\"0\"><FONT COLOR=\"#FFFFFF\">flights<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#DEEBF6FF\" PORT=\"carrier\">carrier<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#DEEBF6FF\" PORT=\"tailnum\">tailnum<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#DEEBF6FF\" PORT=\"origin\">origin<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#DEEBF6FF\" PORT=\"dest\">dest<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#DEEBF6FF\" PORT=\"origin, time_hour\">origin, time_hour<\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"planes\" [id = \"planes\", label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#9E5320AA\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#ED7D31FF\" BORDER=\"0\"><FONT COLOR=\"#FFFFFF\">planes<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#FBE5D5FF\" PORT=\"tailnum\"><U>tailnum<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n  \"weather\" [id = \"weather\", label = <<TABLE ALIGN=\"LEFT\" BORDER=\"1\" CELLBORDER=\"0\" CELLSPACING=\"0\" COLOR=\"#4A732FAA\">\n    <TR>\n      <TD COLSPAN=\"1\" BGCOLOR=\"#70AD47FF\" BORDER=\"0\"><FONT COLOR=\"#FFFFFF\">weather<\/FONT>\n<\/TD>\n    <\/TR>\n    <TR>\n      <TD ALIGN=\"LEFT\" BGCOLOR=\"#E2EEDAFF\" PORT=\"origin, time_hour\"><U>origin, time_hour<\/U><\/TD>\n    <\/TR>\n  <\/TABLE>>, shape = \"plaintext\"] \n\n\"flights\":\"carrier\"->\"airlines\":\"carrier\" [id=\"flights_1\"]\n\"flights\":\"origin\"->\"airports\":\"faa\" [id=\"flights_2\"]\n\"flights\":\"dest\"->\"airports\":\"faa\" [id=\"flights_3\"]\n\"flights\":\"tailnum\"->\"planes\":\"tailnum\" [id=\"flights_4\"]\n\"flights\":\"origin, time_hour\"->\"weather\":\"origin, time_hour\" [id=\"flights_5\"]\n}","config":{"engine":null,"options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>To get details all primary keys use the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">#To get all primary keys</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>dm <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="fu">dm_get_all_pks</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 2
+  table    pk_col           
+  &lt;chr&gt;    &lt;keys&gt;           
+1 airlines carrier          
+2 airports faa              
+3 planes   tailnum          
+4 weather  origin, time_hour</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Use the following codes to check the suitability of each variable of a data set to serve as a primary key.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>dm <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">dm_enum_pk_candidates</span>(airports)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 x 3
+  columns candidate why                                                         
+  &lt;keys&gt;  &lt;lgl&gt;     &lt;chr&gt;                                                       
+1 faa     TRUE      ""                                                          
+2 name    TRUE      ""                                                          
+3 lat     TRUE      ""                                                          
+4 lon     TRUE      ""                                                          
+5 alt     FALSE     "has duplicate values: 30 (4), 13 (3), 9 (2), 19 (2), 26 (2~
+6 tz      FALSE     "has duplicate values: -5 (48), -6 (21), -8 (12), -7 (4)"   
+7 dst     FALSE     "has duplicate values: A (84), N (2)"                       
+8 tzone   FALSE     "has duplicate values: America/New_York (48), America/Chica~</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>We can identify foreign keys by using the function <code>dm_enum_fk_candidates()</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>dm <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">dm_enum_fk_candidates</span>(flights, airlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 x 3
+   columns        candidate why                                                 
+   &lt;keys&gt;         &lt;lgl&gt;     &lt;chr&gt;                                               
+ 1 carrier        TRUE      ""                                                  
+ 2 year           FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 3 month          FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 4 day            FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 5 dep_time       FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 6 sched_dep_time FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 7 dep_delay      FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+ 8 arr_time       FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+ 9 sched_arr_time FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+10 arr_delay      FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+11 flight         FALSE     "Can't combine `value1` &lt;integer&gt; and `value1` &lt;cha~
+12 tailnum        FALSE     "values of `flights$tailnum` not in `airlines$carri~
+13 origin         FALSE     "values of `flights$origin` not in `airlines$carrie~
+14 dest           FALSE     "values of `flights$dest` not in `airlines$carrier`~
+15 air_time       FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+16 distance       FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+17 hour           FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+18 minute         FALSE     "Can't combine `value1` &lt;double&gt; and `value1` &lt;char~
+19 time_hour      FALSE     "Can't combine `value1` &lt;datetime&lt;America/New_York&gt;~</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>We can extract a summary of all foreign key relations present in a <code>dm</code> object using <code>dm_get_all_fks()</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>dm <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">dm_get_all_fks</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 x 5
+  child_table child_fk_cols     parent_table parent_key_cols   on_delete
+  &lt;chr&gt;       &lt;keys&gt;            &lt;chr&gt;        &lt;keys&gt;            &lt;chr&gt;    
+1 flights     carrier           airlines     carrier           no_action
+2 flights     origin            airports     faa               no_action
+3 flights     dest              airports     faa               no_action
+4 flights     tailnum           planes       tailnum           no_action
+5 flights     origin, time_hour weather      origin, time_hour no_action</code></pre>
+</div>
+</div>
+</section></section>
+<section id="relational-data-5" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<p>Now, we select only 6 variables from <code>flights</code> data set to work with easily, and name it as <code>flights2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>flights2 <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, hour, tailnum, carrier)</span>
+<span id="cb52-3"><a href="#cb52-3"></a>flights2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, to add the full airline name, we combine the <code>airlines</code> and <code>flights2</code> data tables using <code>left_join()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>flights2 <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>   <span class="fu">left_join</span>(airlines, <span class="at">by =</span> <span class="st">"carrier"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Refer more details: https://r4ds.had.co.nz/relational-data.html</p>
+</section>
+
+<section id="relational-data-6" class="title-slide slide level1 center">
+<h1><strong>Relational data</strong></h1>
+<p>Suppose we have two data tables x and y.</p>
+<ul>
+<li><p><strong>inner_join(x,y) -</strong> keeps observations common to <code>x</code>and <code>y</code>.</p></li>
+<li><p><strong>left_join(x,y)</strong> - keeps all observations in <code>x</code>.</p></li>
+<li><p><strong>right_join(x,y)</strong> - keeps all observations in <code>y</code>.</p></li>
+<li><p><strong>full_join(x,y) -</strong> keeps all observations in <code>x</code> and <code>y</code>.</p></li>
+<li><p><strong>semi_join(x, y)</strong> - keeps all observations in <code>x</code> that have a match in <code>y</code>.</p></li>
+<li><p><strong>anti_join(x, y)</strong> - drops all observations in <code>x</code> that have a match in <code>y</code>.</p></li>
+</ul>
+</section>
+
+<section id="class-work" class="title-slide slide level1 center">
+<h1>Class work</h1>
+<p>Create two data sets <strong>student_residence</strong> and <strong>student_transport</strong> as below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># Creating student_residence data set</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb54-3"><a href="#cb54-3"></a>student_residence <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">student =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>),</span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="at">distance =</span> <span class="fu">runif</span>(<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">10</span>))</span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="co"># Creating student_transport data set </span></span>
+<span id="cb54-6"><a href="#cb54-6"></a>student_transport <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">student =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="at">by =</span> <span class="dv">2</span>),<span class="at">transport =</span> <span class="fu">c</span>(<span class="st">"Bus"</span>, <span class="st">"Carpool"</span>, <span class="st">"Walk"</span>, <span class="st">"Bus"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using <code>dplyr</code> package, apply <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code> and <code>full_join()</code> to the above data sets, and interpret the results.</p>
+</section>
+
+<section id="must-learn" class="title-slide slide level1 center">
+<h1>Must learn</h1>
+<p>Modeling Relational Data in R with ReDaMoR: https://cran.r-project.org/web/packages/ReDaMoR/vignettes/ReDaMoR.html#1_Introduction</p>
+<p>The <a href="https://github.com/bergant/datamodelr">datamodelr</a> R package provides tools to document relational data.</p>
+<p>Importing data from Relational Databases: https://www.projectpro.io/data-science-in-r-programming-tutorial/r-tutorial-importing-data-from-relational-database</p>
+</section>
+
+<section id="more-details" class="title-slide slide level1 center">
+<h1>More Details</h1>
+<ul>
+<li><p><a href="http://datacarpentry.org/">Data Carpentry</a>, 2017-2018, <code>dplyr</code> package, https://datacarpentry.org/R-genomics/04-dplyr.html#data_manipulation_using_dplyr</p></li>
+<li><p>dplyr : https://dplyr.tidyverse.org/</p></li>
+<li><p>dplyr tutorial : https://www.listendata.com/2016/08/dplyr-tutorial.html</p></li>
+<li><p>Data with dplyr : https://econ.suffolk.edu/dplyr/</p></li>
+<li><p>dplyr flipbook: https://econ.suffolk.edu/slides/dplyr-summarize/#1</p></li>
+<li><p>R for Data Science: https://r4ds.had.co.nz/relational-data.html</p></li>
+<li><p>Relational data models: https://cran.rstudio.com/web/packages/dm/vignettes/howto-dm-theory.html</p></li>
+</ul>
+<p><br>
+</p>
+<div class="footer footer-default">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="lecture9_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="lecture9_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="lecture9_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lecture9_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"theme":"whiteboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        setTimeout(function() {
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>
